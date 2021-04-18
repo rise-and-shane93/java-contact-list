@@ -4,20 +4,41 @@ import java.util.*;
 public class ContactList {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Welcome to your contact list. Please enter the contact list file name (including .txt): ");
-        String fileName = input.next();
+        // System.out.print("Welcome to your contact list. Please enter the contact list file name (including .txt): ");
+        // String fileName = input.next();
 
-        File inputFile = new File(fileName);
+        // File inputFile = new File(fileName);
 
-        if (!inputFile.exists()) {
-            System.out.println("File does not exist. Exiting program.");
-            System.exit(1);
-        } else {
-            System.out.println("File found");
-            System.out.println();
+        // if (!inputFile.exists()) {
+        //     System.out.println("File does not exist. Exiting program.");
+        //     System.exit(1);
+        // } else {
+        //     System.out.println("File found");
+        //     System.out.println();
+        // }
+
+        // readFromContactList(fileName);
+
+        TreeMap<String, ContactObject> contactItems = new TreeMap<String, ContactObject>();
+
+        ContactObject shaneHarper = new ContactObject("Shane", "Harper", "4789556045", "shane.harper@jhu.edu");
+        ContactObject jamalSimms = new ContactObject("Jamal", "Simms", "4105168775", "jamal.simms@jhu.edu");
+        ContactObject bobbyGe = new ContactObject("Bobby", "Ge", "4108675309", "bobby.ge@jhu.edu");
+        
+        contactItems.put(bobbyGe.getLastName(), bobbyGe);
+        contactItems.put(jamalSimms.getLastName(), jamalSimms);
+        contactItems.put(shaneHarper.getLastName(), shaneHarper);
+
+        System.out.println();
+
+        for(Map.Entry contactItem : contactItems.entrySet()) {
+            // Ma value = contactItem.getValue();
+            ContactObject item = contactItems.get(contactItem.getKey());
+            System.out.println(contactItem.getKey() + " : " + item.getFirstName() + " : " + 
+            item.getPhoneNumber() + " : " + item.getEmailAddress());
         }
 
-        readFromContactList(fileName);
+        System.out.println();
 
     }
 
